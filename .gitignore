@@ -1,11 +1,11 @@
 .idea
+_book
 
 # Targets Windows & Unix temporary files
 ~$*
 *~
 
 # OS generated files #
-######################
 .DS_Store
 .DS_Store?
 ._*
