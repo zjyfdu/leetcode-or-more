@@ -51,3 +51,42 @@ const wchar_t* ws = L"中文abc";
 0x00004E2D   0x00006587    0x00000061   0x00000062   0x00000063        //linux，32位
 ```
 大写的L是告诉编译器：这是宽字符串。所以，这时候是需要编译器根据locale（本地化策略集）来进行翻译的。
+
+# cpp的特征
+
+封装、继承、多态
+
+# 构造函数
+ 
+[拷贝构造函数和赋值](https://www.cnblogs.com/wangguchangqing/p/6141743.html)
+
+```
+String(const String& other);
+String& String::operator =(const String& other)
+```
+
+友元函数
+
+```
+class complex {
+    private:
+       double re;
+       double im;
+    public:
+       complex(double real = 0.0, double imag = 0.0) : re(real), im(imag) {}
+       friend ostream & operator<<(ostream& os, complex& c);
+};
+
+ostream & operator<<(ostream& os, complex& c){
+    os << c.re << std::showpos << c.im;
+    return os;
+}
+```
+
+# 单例模式
+
+我感觉c++应该不会问这个，参考[这个](https://www.youtube.com/watch?v=PPup1yeU45I)视频吧
+
+直接用namespace就可以
+
+# explicit（显式）关键字
