@@ -15,7 +15,7 @@ name: 'Gitbook Action'
 on:
   push:
     branches:
-      - master
+      - pages
 
 jobs:
   build:
