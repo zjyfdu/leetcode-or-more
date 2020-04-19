@@ -4,6 +4,7 @@
   - 需要注意一些特殊情况，像+、-、INT_MIN、INT_MAX、等细节
   - 应该不会出现在电话面试里，白板倒是挺有可能
   - 如果是指针的话，第一把先判断空指针
+
 ```cpp
 class Solution {
 public:
@@ -35,44 +36,6 @@ public:
 };
 ```
 
-- [链表中倒数第k个数](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)
-  - leetcode中没有原题，但有删除倒数第k个节点
-  - 书里说是用两个指针同时挪动，但感觉没必要
-  - 需要注意的是对k做检查
-```cpp
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        int list_len = 0;
-        ListNode* ptmp = head;
-        while (ptmp != NULL) {
-            ptmp = ptmp->next;
-            list_len++;
-        }
-        if (n > list_len || n < 1) {
-            return head;
-        }
-        if (n == list_len) {
-            return head->next;
-        }
-        ptmp = head;
-        for (int i = 0; i < list_len - n - 1; i++) {
-            ptmp = ptmp->next;
-        }
-        ptmp->next = ptmp->next->next;
-        return head;
-    }
-};
-```
-
 - 复制构造函数不可以传值
 
 ```cpp
@@ -92,6 +55,7 @@ public:
 
 - 赋值运算符函数
   - 还可以有异常安全的更高级写法，这里没有写
+
 ```cpp
 class CMyString
 {
@@ -104,6 +68,7 @@ private:
     char* m_pData;
 }
 ```
+
 
 ```cpp
 CMyString& CMyString::operator = (const CMystring &str) {
@@ -526,5 +491,5 @@ public:
 ```
 
 - 位操作
-  - (n - 1) ^ n，可以把最后一位1去掉
-  - (-n) & n，可以把最后一位1保留
+  - `(n - 1) ^ n`，可以把最后一位1去掉
+  - `(-n) & n`，可以把最后一位1保留

@@ -1,4 +1,4 @@
-# 弄到gitbook上了(https://zjyfdu.github.io/leetcode-or-more)
+# [弄到gitbook上了](https://zjyfdu.github.io/leetcode-or-more)
 
 # 基础和公共的知识
 - [x] [How does a CPU work?](https://milapneupane.com.np/2019/07/06/how-does-a-cpu-work/)
