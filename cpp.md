@@ -90,3 +90,155 @@ ostream & operator<<(ostream& os, complex& c){
 直接用namespace就可以
 
 # explicit（显式）关键字
+
+# 矩阵乘
+
+## 头文件 matrix.h
+
+```
+#ifndef __MATRIX_H
+#define __MATRIX_H
+
+#include <vector>
+
+template <class T>
+class Matrix {
+private:
+    std::vector<std::vector<T> > mat;
+    unsigned rows;
+    unsigned cols;
+
+public:
+    Matrix(unsigned _rows, unsigned _cols, const T& _initial);
+    Matrix(const Matrix<T>& rhs);
+    virtual ~Matrix();
+
+    // Operator overloading, for "standard" mathematical matrix operations
+    Matrix<T>& operator=(const Matrix<T>& rhs);
+
+    // Matrix mathematical operations
+    Matrix<T> operator*(const Matrix<T>& rhs);
+    Matrix<T>& operator*=(const Matrix<T>& rhs);
+
+    // Access the individual elements
+    T& operator()(const unsigned& row, const unsigned& col);
+    const T& operator()(const unsigned& row, const unsigned& col) const;
+
+    // Access the row and column sizes
+    unsigned get_rows() const;
+    unsigned get_cols() const;
+
+};
+
+#endif
+```
+
+## matrix.cpp
+
+```
+#include "matrix.h"
+
+// Parameter Constructor                                                                                                                                                      
+template<class T>
+Matrix<T>::Matrix(unsigned _rows, unsigned _cols, const T& _initial) {
+  mat.resize(_rows);
+  for (unsigned i=0; i<mat.size(); i++) {
+    mat[i].resize(_cols, _initial);
+  }
+  rows = _rows;
+  cols = _cols;
+}
+
+// Copy Constructor                                                                                                                                                           
+template<class T>
+Matrix<T>::Matrix(const Matrix<T>& rhs) {
+  mat = rhs.mat;
+  rows = rhs.get_rows();
+  cols = rhs.get_cols();
+}
+
+// (Virtual) Destructor                                                                                                                                                       
+template<class T>
+Matrix<T>::~Matrix() {}
+
+// Assignment Operator                                                                                                                                                        
+template<class T>
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& rhs) {
+  if (&rhs == this)
+    return *this;
+
+  unsigned new_rows = rhs.get_rows();
+  unsigned new_cols = rhs.get_cols();
+
+  mat.resize(new_rows);
+  for (unsigned i=0; i<mat.size(); i++) {
+    mat[i].resize(new_cols);
+  }
+
+  for (unsigned i=0; i<new_rows; i++) {
+    for (unsigned j=0; j<new_cols; j++) {
+      mat[i][j] = rhs(i, j);
+    }
+  }
+  rows = new_rows;
+  cols = new_cols;
+
+  return *this;
+}
+
+// Left multiplication of this matrix and another                                                                                                                              
+template<class T>
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs) {
+  unsigned rows = this->get_rows();
+  unsigned cols = rhs.get_cols();
+  Matrix result(rows, cols, 0.0);
+
+  for (unsigned i=0; i<rows; i++) {
+    for (unsigned j=0; j<cols; j++) {
+      for (unsigned k=0; k<this->get_cols(); k++) {
+        result(i,j) += this->mat[i][k] * rhs(k,j);
+      }
+    }
+  }
+
+  return result;
+}
+
+// Cumulative left multiplication of this matrix and another                                                                                                                  
+template<class T>
+Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& rhs) {
+  Matrix result = (*this) * rhs;
+  (*this) = result;
+  return *this;
+}
+
+// Access the individual elements                                                                                                                                             
+template<class T>
+T& Matrix<T>::operator()(const unsigned& row, const unsigned& col) {
+  return this->mat[row][col];
+}
+
+// Access the individual elements (const)                                                                                                                                     
+template<class T>
+const T& Matrix<T>::operator()(const unsigned& row, const unsigned& col) const {
+  return this->mat[row][col];
+}
+
+// Get the number of rows of the matrix                                                                                                                                       
+template<class T>
+unsigned Matrix<T>::get_rows() const {
+  return this->rows;
+}
+
+// Get the number of columns of the matrix                                                                                                                                    
+template<class T>
+unsigned Matrix<T>::get_cols() const {
+  return this->cols;
+}
+
+// 实例化声明
+template class Matrix<int>;
+template class Matrix<float>;
+template class Matrix<double>;
+
+```
