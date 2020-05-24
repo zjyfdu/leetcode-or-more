@@ -1,6 +1,6 @@
 # [弄到gitbook上了](https://zjyfdu.github.io/leetcode-or-more)
 
-# 基础和公共的知识
+# 基础和公共的知识git
 - [x] [How does a CPU work?](https://milapneupane.com.np/2019/07/06/how-does-a-cpu-work/)
 - [x] [learn the regex the easy way](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
 - [x] [计算机科学速成课](https://www.bilibili.com/video/av21376839?t=201&p=21)

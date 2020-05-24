@@ -491,5 +491,33 @@ public:
 ```
 
 - 位操作
-  - `(n - 1) ^ n`，可以把最后一位1去掉
+  - `(n - 1) & n`，可以把最后一位1去掉
   - `(-n) & n`，可以把最后一位1保留
+  
+- 堆
+
+```
+priority_queue<int,vector<int>,less<int>> que; // 大顶堆
+priority_queue<int,vector<int>,greater<int>> que; // 小顶堆
+
+```
+
+- 堆，最小的k个数，用大顶堆做
+```
+class Solution {
+public:
+    vector<int> getLeastNumbers(vector<int>& arr, int k) {
+        vector<int> res(k);
+        priority_queue<int,vector<int>,less<int>> que;
+        for(int i=0;i<arr.size();i++){
+            que.push(arr[i]);
+            if(que.size()>k) que.pop();
+        }
+        for(int i=k-1;i>=0;i--){
+            res[i]=que.top();
+            que.pop();
+        }
+        return res;
+    }
+};
+```
