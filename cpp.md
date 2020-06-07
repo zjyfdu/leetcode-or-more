@@ -236,6 +236,18 @@ unsigned Matrix<T>::get_cols() const {
   return this->cols;
 }
 
+template <class T>
+ostream & operator<<(ostream &out, Matrix<T> &a)
+{
+    for (unsigned i = 0; i < a.get_row(); i++) {
+        for (unsigned j = 0; j < a.get_col(); j++) {
+            out << a(i, j) << "\t";
+        }
+        out << std::endl;
+    }
+    return out;
+}
+
 // 实例化声明
 template class Matrix<int>;
 template class Matrix<float>;
