@@ -23,6 +23,7 @@ jobs:
     strategy:
       matrix:
         node-version: [8]
+        python-version: [3.6]
 
     steps:
     - uses: actions/checkout@v1
@@ -30,6 +31,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
     - name: install_gitbook_plugins
       run: |
         npm install gitbook-cli  -g
@@ -37,6 +42,7 @@ jobs:
         gitbook install
     - name: build_gitbook
       run: |
+        python gen_summary.py > SUMMARY.md
         gitbook build
     - name: push_to_pages
       run: |
