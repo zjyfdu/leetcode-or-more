@@ -18,3 +18,7 @@ do
 done
 echo $sum
 ```
+
+```
+uname -a
+```

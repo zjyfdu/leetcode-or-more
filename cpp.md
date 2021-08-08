@@ -1,5 +1,7 @@
 我在油管上发现一个比较好的[cpp视频](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
 
+[] embrace_back()和push_back()
+
 # constructor
 
 ```cpp

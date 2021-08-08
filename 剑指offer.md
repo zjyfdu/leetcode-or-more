@@ -502,6 +502,10 @@ priority_queue<int,vector<int>,greater<int>> que; // 小顶堆
 
 ```
 
+- 大顶堆是每个节点都比子节点大
+- 堆排序里，升序要用大顶堆（根节点要和最后一个节点交换）
+- greater和less是std实现的两个仿函数（就是使一个类的使用看上去像一个函数。其实现就是类中实现一个operator()，这个类就有了类似函数的行为，就是一个仿函数类了）
+
 - 堆，最小的k个数，用大顶堆做
 ```
 class Solution {

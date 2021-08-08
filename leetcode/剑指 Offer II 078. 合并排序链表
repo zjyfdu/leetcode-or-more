@@ -1,0 +1,51 @@
+给定一个链表数组，每个链表都已经按升序排列。
+
+请将所有链表合并到一个升序链表中，返回合并后的链表。
+
+可以用最小堆来做，时间复杂度O(kn*logk)，k是链表个数，n是每个链表里元素个数
+
+其实也可以直接两两合并，时间复杂度一样
+
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    struct Cmp {
+        bool operator() (ListNode*& l, ListNode*& r) {
+            return l->val > r->val;
+        }
+    };
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, Cmp> heap;
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists[i]) {
+                heap.push(lists[i]);
+            }
+        }
+        ListNode* head = nullptr, *tail = nullptr;
+        while (!heap.empty()) {
+            if (!head) {
+                head = heap.top();
+                tail = head;
+            } else {
+                tail->next = heap.top();
+                tail = tail->next;
+            }
+            heap.pop();
+            if (tail->next) {
+                heap.push(tail->next);
+            }
+        }
+        return head;
+    }
+};
+```
