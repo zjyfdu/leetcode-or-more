@@ -513,9 +513,10 @@ public:
     vector<int> getLeastNumbers(vector<int>& arr, int k) {
         vector<int> res(k);
         priority_queue<int,vector<int>,less<int>> que;
-        for(int i=0;i<arr.size();i++){
+        for(int i = 0; i < arr.size(); i++){
             que.push(arr[i]);
-            if(que.size()>k) que.pop();
+            if (que.size() > k) 
+                que.pop();
         }
         for(int i=k-1;i>=0;i--){
             res[i]=que.top();

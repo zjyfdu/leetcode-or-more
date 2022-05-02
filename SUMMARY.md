@@ -15,7 +15,3 @@
 	* [1248统计优美子数组](leetcode/1248统计优美子数组.md)
 	* [98验证二叉搜索树](leetcode/98验证二叉搜索树.md)
 	* [面试题 16.25. LRU缓存](leetcode/面试题 16.25. LRU缓存.md)
-* [ocr]()
-	* [两篇paddle ocr的论文](ocr/两篇paddle ocr的论文.md)
-	* [DB](ocr/DB.md)
-	* [MSR](ocr/MSR.md)
