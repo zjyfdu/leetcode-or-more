@@ -53,7 +53,7 @@ jobs:
     - name: push_to_pages
       run: |
         cd ./_book
-        git init
+        git config --global init.defaultBranch main
         git config --local user.name zjyfdu
         git config --local user.email 15210720098@fudan.edu.cn
         git add *
