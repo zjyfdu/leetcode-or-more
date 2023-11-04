@@ -56,7 +56,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --local user.name zjyfdu
         git config --local user.email 15210720098@fudan.edu.cn
-        git add *
+        git add -f ./*
         git commit -m "update"
         git push --force  "https:///${{ secrets.THE_GITHUB_TOKEN }}@github.com/zjyfdu/leetcode-or-more.git" main:master
       env:
