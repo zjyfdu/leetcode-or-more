@@ -23,6 +23,5 @@
 - [ ] [fucking-algorithm](https://labuladong.gitbook.io/algo/)
 
 # side project
-- [ ] 在线OCR，要用百度的api
 - [x] EngineCMS，需要添加自动备份的功能
 - [x] gin+vue，看了[橙卡的教学](https://www.bilibili.com/video/av67032470)
