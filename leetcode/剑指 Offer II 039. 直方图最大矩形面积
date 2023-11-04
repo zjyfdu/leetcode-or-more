@@ -1,0 +1,30 @@
+求直方图里的最大矩形面积
+
+还是比较难想的，看不明白了可以直接看[解释](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/)
+
+类似的题有直方图接雨水，感觉比这个简单
+
+```
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        heights.push_back(0); // 辅助，为了保证最后stack是清空的
+        int res = 0;
+        stack<int> stk;
+        for (int i = 0; i < heights.size(); i++) {
+            while (!stk.empty() && heights[i] < heights[stk.top()]) {
+                int h = heights[stk.top()];
+                stk.pop();
+                int w = i;
+                if (!stk.empty()) {
+                    w = i - stk.top() - 1;
+                }
+                res = res > h * w ? res : h * w;
+            }
+            stk.push(i);
+        }
+        return res;
+
+    }
+};
+```
