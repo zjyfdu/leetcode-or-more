@@ -10,6 +10,12 @@
 # When you make THE_GITHUB_TOKEN , the push permission is must have，the others, you can add.
 # You can visit https://zlogs.net/gitbook-action/ for more information.
 
+# 我想不通，我为啥查不到github token的官方文档？
+# https://techglimpse.com/git-push-github-token-based-passwordless/
+# git push https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
+# 所以最后的bug是这几个，python3.6不支持了，新创建的分支是main不是master（BLM!），可能token过期了
+
+
 name: 'Gitbook Action'
 
 on:
@@ -52,6 +58,6 @@ jobs:
         git config --local user.email 15210720098@fudan.edu.cn
         git add *
         git commit -m "update"
-        git push --force origin master
+        git push --force  "https:///${{ secrets.THE_GITHUB_TOKEN }}@github.com/zjyfdu/leetcode-or-more.git" main:master
       env:
         CI: true
