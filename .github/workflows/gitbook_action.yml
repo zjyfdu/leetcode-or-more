@@ -14,6 +14,7 @@
 # https://techglimpse.com/git-push-github-token-based-passwordless/
 # git push https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
 # 所以最后的bug是这几个，python3.6不支持了，新创建的分支是main不是master（BLM!），可能token过期了
+# 我是傻逼，怎么把init给删了
 
 
 name: 'Gitbook Action'
@@ -54,6 +55,7 @@ jobs:
       run: |
         cd ./_book
         git config --global init.defaultBranch main
+        git init
         git config --local user.name zjyfdu
         git config --local user.email 15210720098@fudan.edu.cn
         git add -f ./*
